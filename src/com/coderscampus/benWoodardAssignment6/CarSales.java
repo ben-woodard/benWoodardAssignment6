@@ -4,13 +4,13 @@ public class CarSales {
 
 	private String month;
 	private Integer year;
-	private Integer salesAmount;
+	private Integer sales;
 
 
 	public CarSales(String month, Integer year, Integer salesAmount) {
 		this.month = month;
 		this.year = year;
-		this.salesAmount = salesAmount;
+		this.sales = salesAmount;
 	}
 
 	public String getMonth() {
@@ -29,17 +29,17 @@ public class CarSales {
 		this.year = year;
 	}
 
-	public Integer getSalesAmount() {
-		return salesAmount;
+	public Integer getSales() {
+		return sales;
 	}
 
-	public void setSalesAmount(Integer salesAmount) {
-		this.salesAmount = salesAmount;
+	public void setSales(Integer salesAmount) {
+		this.sales = salesAmount;
 	}
 
 	@Override
 	public String toString() {
-		return "CarSales [month=" + month + ", year=" + year + ", salesAmount=" + salesAmount + "]";
+		return "CarSales [month=" + month + ", year=" + year + ", salesAmount=" + sales + "]";
 	}
 
 }
