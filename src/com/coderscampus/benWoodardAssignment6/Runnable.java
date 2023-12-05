@@ -6,18 +6,18 @@ import java.util.List;
 public class Runnable {
 
 	public static void main(String[] args) throws ParseException {
-		FileService fileService = new FileService();
-		List<CarSales> carData =  fileService.readCarFile("./teslaDataCSV/models.csv");
-		SalesDataService salesData = new SalesDataService();
-		salesData.salesDataByYear(carData);
+//		FileService fileService = new FileService();
+//		SalesDataService salesDataService = new SalesDataService();
+//		List<CarSales> poop = fileService.readCarFile("./teslaDataCSV/model3.csv");
+//		
+//		salesDataService.bestSalesMonth(poop, "Model poop");
 
-//		salesData.worstSalesMonth(carData, "model 3");
-//		salesData.bestSalesMonth(carData, "model 3");
-		
-		
-//		for(CarSales cars : carData) {
-//			System.out.println(cars.toString());
-//		}
+		ReportsService reportsService = new ReportsService();
+		reportsService.generateReport("./teslaDataCSV/model3.csv", "Model 3");
+		reportsService.generateReport("./teslaDataCSV/modelS.csv", "Model S");
+		reportsService.generateReport("./teslaDataCSV/modelX.csv", "Model X");
+
+	
 
 	}
 
