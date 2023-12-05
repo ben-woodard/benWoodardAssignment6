@@ -35,8 +35,7 @@ public class SalesDataService {
 				.forEach((entry) -> System.out.println("20" + entry.getKey() + " -> " + entry.getValue()));
 	}
 
-	// Get Best Sales Month/ Year: stream for best sales, compare to List of objects
-	// and add matching object to list to access properties
+	//Best Sales Month/ Year
 	public void bestSalesMonth(List<CarSales> carSales, String carModel) throws ParseException {
 
 		Integer bestSalesAmount = carSales.stream()
@@ -50,7 +49,7 @@ public class SalesDataService {
 	
 	}
 
-	// Same functionality as bestSalesMonth, searching for minimum sales month
+	//Worst Sales Month/ Year
 	public void worstSalesMonth(List<CarSales> carSales, String carModel) {
 
 		Integer worstSalesAmount = carSales.stream()
