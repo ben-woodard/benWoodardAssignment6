@@ -23,12 +23,10 @@ public class FileService {
 				carSales = new CarSales(salesDataArray[0], yearIndex, salesIndex);
 				carSalesData.add(carSales);
 			}
-			fileReader.close();
 		} catch (IOException e) {
 			System.out.println("There was an exception while reading the file.");
 			e.printStackTrace();
 		} 
-		
 		return carSalesData;
 	}
 }
