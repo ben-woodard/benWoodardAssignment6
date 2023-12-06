@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileService {
-	private List<CarSales> carSalesData = new ArrayList<>();
 	
 	public List<CarSales> readCarFile(String filename) {
+		List<CarSales> carSalesData = new ArrayList<>();
 		String[] salesDataArray = new String[2];
 		String line;
 		CarSales carSales;

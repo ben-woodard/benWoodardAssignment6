@@ -1,24 +1,17 @@
 package com.coderscampus.benWoodardAssignment6;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.time.YearMonth;
+
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 import java.time.temporal.TemporalAccessor;
-import java.util.Calendar;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 public class SalesDataService {
 
@@ -70,8 +63,6 @@ public class SalesDataService {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM").withLocale(Locale.ENGLISH);
 		TemporalAccessor accessor = formatter.parse(month);
 		return accessor.get(ChronoField.MONTH_OF_YEAR);
-	
-		
 	}
 
 }
