@@ -3,10 +3,7 @@ package com.coderscampus.benWoodardAssignment6;
 import java.text.ParseException;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoField;
-import java.time.temporal.TemporalAccessor;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -24,7 +21,7 @@ public class SalesDataService {
 		Set<Entry<Integer, Integer>> entrySet = salesByYear.entrySet();
 
 		entrySet.stream()
-				.forEach((entry) -> System.out.println(formatYear(entry.getKey()) + " -> " + entry.getValue()));
+				.forEach((entry) -> System.out.println(formatYear(entry.getKey()) + entry.getValue()));
 	}
 
 	// Best Sales Month/ Year
@@ -57,7 +54,7 @@ public class SalesDataService {
 
 	//format year to pattern yyyy
 	public String formatYear(Integer year) {
-		return "20" + year;
+		return "20" + year + " -> ";
 	}
 	
 	//format date to pattern yyyy-MM
@@ -67,6 +64,5 @@ public class SalesDataService {
 		DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
 		YearMonth dateToFormat = YearMonth.parse(inputDate, inputFormatter);
 		return outputFormatter.format(dateToFormat);
-
 	}
 }
