@@ -1,7 +1,7 @@
 package com.coderscampus.benWoodardAssignment6;
 
 import java.text.ParseException;
-
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 import java.time.temporal.TemporalAccessor;
@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
-
 
 public class SalesDataService {
 
@@ -25,10 +24,10 @@ public class SalesDataService {
 		Set<Entry<Integer, Integer>> entrySet = salesByYear.entrySet();
 
 		entrySet.stream()
-				.forEach((entry) -> System.out.println("20" + entry.getKey() + " -> " + entry.getValue()));
+				.forEach((entry) -> System.out.println(formatYear(entry.getKey()) + " -> " + entry.getValue()));
 	}
 
-	//Best Sales Month/ Year
+	// Best Sales Month/ Year
 	public void bestSalesMonth(List<CarSales> carSales, String carModel) throws ParseException {
 
 		Integer bestSalesAmount = carSales.stream()
@@ -36,33 +35,38 @@ public class SalesDataService {
 										  .get();
 
 		carSales.stream()
-			    .filter(cars -> (cars.getSales()).equals(bestSalesAmount))
-				.forEach(cars -> System.out.println("The best month for " + carModel + " was: 20" + cars.getYear() + "-" + parseMonth(cars.getMonth())));
+				.filter(cars -> (cars.getSales()).equals(bestSalesAmount))
+				.forEach(cars -> System.out.println("The best month for " + carModel + " was: " + formatDate(cars.getYear(), cars.getMonth())));
 
-	
 	}
 
-	//Worst Sales Month/ Year
+	// Worst Sales Month/ Year
 	public void worstSalesMonth(List<CarSales> carSales, String carModel) {
 
 		Integer worstSalesAmount = carSales.stream()
 										   .map(cars -> cars.getSales())
-										   .min(Integer::compare)
-										   .get();
+										   .min(Integer::compare).get();
 
 		List<CarSales> worstSalesObject = carSales.stream()
 												  .filter(cars -> (cars.getSales()).equals(worstSalesAmount))
 												  .collect(Collectors.toList());
 
 		worstSalesObject.stream()
-						.forEach(cars -> System.out.println("The worst month for " + carModel + " was: 20" + cars.getYear() + "-" + parseMonth(cars.getMonth())));
+						.forEach(cars -> System.out.println("The worst month for " + carModel + " was: " + formatDate(cars.getYear(), cars.getMonth())));
 	}
 
-	// parsing String "MMM" to Month_Of_Year
-	public int parseMonth(String month) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM").withLocale(Locale.ENGLISH);
-		TemporalAccessor accessor = formatter.parse(month);
-		return accessor.get(ChronoField.MONTH_OF_YEAR);
+	//format year to pattern yyyy
+	public String formatYear(Integer year) {
+		return "20" + year;
 	}
+	
+	//format date to pattern yyyy-MM
+	public String formatDate(Integer year, String month) {
+		String inputDate = year + "-" + month;
+		DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yy-MMM");
+		DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM");
+		YearMonth dateToFormat = YearMonth.parse(inputDate, inputFormatter);
+		return outputFormatter.format(dateToFormat);
 
+	}
 }
