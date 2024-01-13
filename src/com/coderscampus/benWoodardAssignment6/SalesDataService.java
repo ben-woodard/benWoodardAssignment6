@@ -18,10 +18,8 @@ public class SalesDataService {
 		Map<Integer, Integer> salesByYear = carSales.stream()
 													.collect(Collectors.groupingBy(CarSales::getYear, Collectors.summingInt(CarSales::getSales)));
 
-		Set<Entry<Integer, Integer>> entrySet = salesByYear.entrySet();
-
-		entrySet.stream()
-				.forEach((entry) -> System.out.println(formatYear(entry.getKey()) + entry.getValue()));
+		salesByYear.entrySet().stream()
+				               .forEach((entry) -> System.out.println(formatYear(entry.getKey()) + entry.getValue()));
 	}
 
 	// Best Sales Month/ Year
@@ -34,7 +32,6 @@ public class SalesDataService {
 		carSales.stream()
 				.filter(cars -> (cars.getSales()).equals(bestSalesAmount))
 				.forEach(cars -> System.out.println("The best month for " + carModel + " was: " + formatDate(cars.getYear(), cars.getMonth())));
-
 	}
 
 	// Worst Sales Month/ Year
@@ -44,12 +41,10 @@ public class SalesDataService {
 										   .map(cars -> cars.getSales())
 										   .min(Integer::compare).get();
 
-		List<CarSales> worstSalesObject = carSales.stream()
-												  .filter(cars -> (cars.getSales()).equals(worstSalesAmount))
-												  .collect(Collectors.toList());
+		carSales.stream()
+			    .filter(cars -> (cars.getSales()).equals(worstSalesAmount))
+			    .forEach(cars -> System.out.println("The worst month for " + carModel + " was: " + formatDate(cars.getYear(), cars.getMonth())));
 
-		worstSalesObject.stream()
-						.forEach(cars -> System.out.println("The worst month for " + carModel + " was: " + formatDate(cars.getYear(), cars.getMonth())));
 	}
 
 	//format year to pattern yyyy
